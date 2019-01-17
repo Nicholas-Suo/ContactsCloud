@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ContactsCloud</string>
+    <string name="title_home">Sync</string>
+    <string name="title_myinfo">User</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="sync_contact">Sync Cnotacts</string>
+    <string name="sync_contact_title">Cnotacts Sync</string>
+    <string name="cloud_contacts">Cloud Contacts</string>
+</resources>

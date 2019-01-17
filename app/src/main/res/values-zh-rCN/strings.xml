@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">通讯录云</string>
+    <string name="title_home">同步</string>
+    <string name="title_myinfo">我的</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="sync_contact">同步联系人</string>
+    <string name="sync_contact_title">联系人备份</string>
+    <string name="cloud_contacts">云端联系人</string>
+</resources>

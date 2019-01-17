@@ -1,0 +1,11 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="sync_image_view_top_margin">50dp</dimen>
+    <dimen name="sync_contact_top_margin_img">50dp</dimen>
+    <dimen name="sync_contact_top_margin">10dp</dimen>
+    <dimen name="title_size">18dp</dimen>
+    <dimen name="menu_item_left_margin">16dp</dimen>
+    <dimen name="menu_item_right_margin">16dp</dimen>
+</resources>
