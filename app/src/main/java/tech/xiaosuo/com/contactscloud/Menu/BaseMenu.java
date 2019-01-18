@@ -1,6 +1,6 @@
 package tech.xiaosuo.com.contactscloud.Menu;
 
-public abstract class MenuBean {
+public abstract class BaseMenu {
     int nameId;
     int cloudCount;
     int iconId;
@@ -29,5 +29,5 @@ public abstract class MenuBean {
         this.iconId = iconId;
     }
 
-    public abstract MenuBean createMenu();
+    public abstract BaseMenu createMenu();
 }

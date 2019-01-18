@@ -13,14 +13,14 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import tech.xiaosuo.com.contactscloud.Menu.BaseMenu;
 import tech.xiaosuo.com.contactscloud.Menu.CloudContatctsMenu;
-import tech.xiaosuo.com.contactscloud.Menu.MenuBean;
 import tech.xiaosuo.com.contactscloud.Menu.MenuFactory;
 
 public class CloudLocalMenuAdapter extends BaseAdapter {
 
 
-    List<MenuBean> menuList = null;
+    List<BaseMenu> menuList = null;
     Context context;
 
     public  CloudLocalMenuAdapter(Context context){
@@ -59,7 +59,7 @@ public class CloudLocalMenuAdapter extends BaseAdapter {
              holder = (ItemHolder)convertView.getTag();
          }
 
-          MenuBean menuBean = (MenuBean)getItem(position);
+        BaseMenu menuBean = (BaseMenu)getItem(position);
          if(menuBean != null){
              holder.menuImageView.setImageResource(menuBean.getIconId());
              holder.menuNameView.setText(menuBean.getNameId());
@@ -113,11 +113,11 @@ public class CloudLocalMenuAdapter extends BaseAdapter {
      */
    private void initMenuList(){
        if(menuList == null){
-           menuList = new ArrayList<MenuBean>();
+           menuList = new ArrayList<BaseMenu>();
        }else{
            menuList.clear();
        }
-       MenuBean cloudContactMenu = MenuFactory.createMenu(CloudContatctsMenu.class);
+       BaseMenu cloudContactMenu = MenuFactory.createMenu(CloudContatctsMenu.class);
 
 /*       MenuBean cloudContactMenu = new MenuBean();
        cloudContactMenu.setIconId(R.drawable.cloud_icon);

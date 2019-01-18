@@ -5,10 +5,10 @@ package tech.xiaosuo.com.contactscloud.Menu;
 
 public class MenuFactory {
 
-    public  static <T extends MenuBean>  T createMenu(Class<T> clz){
-           MenuBean menuBean = null;
+    public  static <T extends BaseMenu>  T createMenu(Class<T> clz){
+        BaseMenu menuBean = null;
         try {
-            menuBean = ((MenuBean)Class.forName(clz.getName()).newInstance()).createMenu();
+            menuBean = ((BaseMenu)Class.forName(clz.getName()).newInstance()).createMenu();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

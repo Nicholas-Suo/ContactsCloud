@@ -2,10 +2,10 @@ package tech.xiaosuo.com.contactscloud.Menu;
 
 import tech.xiaosuo.com.contactscloud.R;
 
-public class CloudContatctsMenu extends MenuBean {
+public class CloudContatctsMenu extends BaseMenu {
 
     @Override
-    public MenuBean createMenu() {
+    public BaseMenu createMenu() {
         CloudContatctsMenu cloudContactMenu = new CloudContatctsMenu();
         cloudContactMenu.setIconId(R.drawable.cloud_icon);
         cloudContactMenu.setNameId(R.string.cloud_contacts);
