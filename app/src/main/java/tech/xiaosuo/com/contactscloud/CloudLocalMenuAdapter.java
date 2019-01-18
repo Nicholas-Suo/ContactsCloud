@@ -13,6 +13,10 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import tech.xiaosuo.com.contactscloud.Menu.CloudContatctsMenu;
+import tech.xiaosuo.com.contactscloud.Menu.MenuBean;
+import tech.xiaosuo.com.contactscloud.Menu.MenuFactory;
+
 public class CloudLocalMenuAdapter extends BaseAdapter {
 
 
@@ -71,8 +75,8 @@ public class CloudLocalMenuAdapter extends BaseAdapter {
         TextView menuCountView;
     }
 
-    /* list menu item bean,object*/
-   private class MenuBean{
+  /*  *//* list menu item bean,object*//*
+   public static class MenuBean{
         int nameId;
         int cloudCount;
         int iconId;
@@ -102,7 +106,7 @@ public class CloudLocalMenuAdapter extends BaseAdapter {
        public void setIconId(int iconId) {
            this.iconId = iconId;
        }
-   }
+   }*/
 
     /**
      * init the menu list ,for show MENU:Cloud Contacts,Local Contacts
@@ -110,12 +114,15 @@ public class CloudLocalMenuAdapter extends BaseAdapter {
    private void initMenuList(){
        if(menuList == null){
            menuList = new ArrayList<MenuBean>();
+       }else{
+           menuList.clear();
        }
+       MenuBean cloudContactMenu = MenuFactory.createMenu(CloudContatctsMenu.class);
 
-       MenuBean cloudContactMenu = new MenuBean();
+/*       MenuBean cloudContactMenu = new MenuBean();
        cloudContactMenu.setIconId(R.drawable.cloud_icon);
        cloudContactMenu.setNameId(R.string.cloud_contacts);
-       cloudContactMenu.setCloudCount(0);
+       cloudContactMenu.setCloudCount(0);*/
        menuList.add(cloudContactMenu);
 
    }
