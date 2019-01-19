@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">ContactsCloud</string>
     <string name="title_home">Sync</string>
     <string name="title_myinfo">User</string>
@@ -6,4 +6,51 @@
     <string name="sync_contact">Sync Cnotacts</string>
     <string name="sync_contact_title">Cnotacts Sync</string>
     <string name="cloud_contacts">Cloud Contacts</string>
+    <string name="dialog_title">Notice</string>
+    <string name="pls_login">Please Login</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <!-- Strings related to login -->
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_phone_number">Phone Number</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_phonenumber">This phone number is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="register">Register</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="prompt_username_or_phone_number">Username/Phone number</string>
+    <!--    register string-->
+    <string name="register_commit">Submit</string>
+    <string name="confirm_password">Input Password Again</string>
+    <string name="password_not_equal">Password is not same</string>
+    <string name="nick_name">UserName</string>
+    <string name="telphone">Phone Number</string>
+    <string name="register_progress_message">Submitting...</string>
+    <string name="pls_connect_network">please connect network</string>
+    <string name="nickname_exist">UserName exist</string>
+    <string name="telnumber_exist">PhoneNumber exist</string>
+    <string name="register_sucess">Register sucess,pls login!</string>
+
+    <string name="replace_phone_number_fail">Bind Phone number fail</string>
+    <string name="replace_phone_number_success">Bind Phone number success</string>
+    <string name="sms_code_verify_fail">Sms code verify fail</string>
+    <string name="sms_code_err">Sms Code Error</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="pls_contact_customer_service">WebServer Error,pls contact customer service </string>
+    <string name="reset_pwd_success">reset password success</string>
+    <string name="reset_pwd_fail">reset password fail</string>
+    <string name="sms_code_has_send_to">Sms Code has been sent to：</string>
+    <string name="sms_code_request_fail">Request Sms Code Fail.</string>
+    <string name="request_sms_code_again">Request Again<xliff:g id="tiem_second"> %1$s</xliff:g>s</string>
+    <string name="replace_phonenumber">Replace PhoneNumber</string>
+    <string name="title_activity_reset_password">Reset Password</string>
+    <string name="new_passworid">New Password</string>
+    <string name="confirm_new_passworid">Confirm Password</string>
+    <string name="request_sms_code">Request SmsCode</string>
+    <string name="sms_code">Sms Code</string>
+    <string name="request_sms_code_agian">Request Again<xliff:g id="tiem_second"> %1$s</xliff:g>s</string>
 </resources>

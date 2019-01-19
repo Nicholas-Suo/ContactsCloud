@@ -4,6 +4,7 @@ public abstract class BaseMenu {
     int nameId;
     int cloudCount;
     int iconId;
+    String menuName;
 
     public int getNameId() {
         return nameId;
@@ -27,6 +28,14 @@ public abstract class BaseMenu {
 
     public void setIconId(int iconId) {
         this.iconId = iconId;
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
     }
 
     public abstract BaseMenu createMenu();

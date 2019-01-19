@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
 import tech.xiaosuo.com.contactscloud.Fragments.MyInfoFragment;
 import tech.xiaosuo.com.contactscloud.Fragments.SyncFragment;
 
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
      //   getSupportActionBar().hide();
       //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN , WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        Bmob.initialize(this, "a9155fe2bc2f2ede3b0e28261a93004a");
         mContext = getApplicationContext();
         initFragments();
         mainFragmentAdapter = new MainFragmentAdapter(getSupportFragmentManager(),mFragmentList);
