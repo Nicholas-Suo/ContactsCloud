@@ -162,7 +162,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             focusView.requestFocus();
         } else {
             showProgress(true);
-            BmobSMS.verifySmsCodeObservable(telnumber,code);
+           // BmobSMS.verifySmsCodeObservable(telnumber,code);
             BmobSMS.verifySmsCode(telnumber, code, new UpdateListener() {
                 @Override
                 public void done(BmobException e) {
@@ -183,6 +183,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                     new AlertDialog.Builder(RegisterActivity.this).setTitle(R.string.dialog_title).setMessage(R.string.register_sucess).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
                                             finish();
                                         }
                                     }).show();
@@ -321,8 +322,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         int id = v.getId();
         switch (id){
             case R.id.register_button:
-                finish();
-             //   attemptRegister();
+               // finish();
+                attemptRegister();
                 break;
             case R.id.request_register_sms_code_button:
                 if(mTelNumber==null || mTelNumber.getText() == null || mTelNumber.length() == 0){
