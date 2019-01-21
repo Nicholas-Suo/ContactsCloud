@@ -268,7 +268,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 String phoneNumber = mTelNumber.getText().toString();
                 boolean isValidPhoneNumber = Utils.isValidPhoneNumber(phoneNumber);
                 if(isValidPhoneNumber){
-                    requestSmsCodeAgainTimer(Utils.ONE_MINUTE);
+                    requestSmsCodeAgainTimer(mRquestSmsCodeButton,Utils.ONE_MINUTE);
                     BmobInterface.sendSmsCodeRequest(this,phoneNumber);
                 }else{
                     Toast.makeText(mContext,R.string.error_invalid_phonenumber,Toast.LENGTH_SHORT).show();
@@ -284,7 +284,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
      * begin send msg to refresh the Button : "Request sms code button" per 1s.
      * @param second
      */
-    private void requestSmsCodeAgainTimer(int second){
+/*    private void requestSmsCodeAgainTimer(int second){
         Log.d(TAG," the left time is " + second + " second");
         updateRequestSmsCodeButtonText(second);
         if(second < 0 || second > Utils.ONE_MINUTE){
@@ -294,9 +294,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         msg.what = Utils.REFRESH_SEND_SMS_CODE_TIMER;
         msg.arg1 = second;
         registerHandler.sendMessageDelayed(msg,1000);
-    }
+    }*/
 
-    Handler registerHandler = new Handler(){
+/*    Handler registerHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             int what = msg.what;
@@ -312,14 +312,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     break;
             }
         }
-    };
+    };*/
 
 
-    /**
+/*    *//**
      * update the reqest sms code button's text
-     * @param second
-     */
-    @SuppressLint("StringFormatInvalid")
+     * //@param second
+     *//*
+*//*    @SuppressLint("StringFormatInvalid")
     private void updateRequestSmsCodeButtonText(int second){
         if(second <= 0){
             mRquestSmsCodeButton.setText(R.string.request_sms_code);
@@ -329,12 +329,12 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         mRquestSmsCodeButton.setEnabled(false);
         String timerStr = getString(R.string.request_sms_code_agian,String.valueOf(second));
         mRquestSmsCodeButton.setText(timerStr);
-    }
+    }*/
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        registerHandler.removeMessages(Utils.REFRESH_SEND_SMS_CODE_TIMER);
+       // registerHandler.removeMessages(Utils.REFRESH_SEND_SMS_CODE_TIMER);
     }
 }
 
