@@ -77,7 +77,7 @@ public class LoginActivity extends BaseActivity  { //implements LoaderCallbacks<
     private TextView registerView;
     private TextView forgetPasswodView;
     private Context mContext;
-    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +116,9 @@ public class LoginActivity extends BaseActivity  { //implements LoaderCallbacks<
             @Override
             public void onClick(View widget) {
                   Log.d(TAG, " open the forget pwd activity");
+                  Intent intent = new Intent(LoginActivity.this,ForgetPasswordActivity.class);
+                  startActivity(intent);
+                  finish();
             }
         },0,fPwdLen,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         forgetPasswodView.setMovementMethod(LinkMovementMethod.getInstance());
@@ -230,7 +233,7 @@ public class LoginActivity extends BaseActivity  { //implements LoaderCallbacks<
             focusView.requestFocus();
         } else {
             // perform the user login attempt.
-            showProgress(true);
+            showProgress(true,R.string.is_logining);
             LoginByPassword(phoneNumber,password);
 
         }
@@ -276,7 +279,7 @@ public class LoginActivity extends BaseActivity  { //implements LoaderCallbacks<
 
             @Override
             public void done(UserInfo user, BmobException e) {
-                showProgress(false);
+                showProgress(false,R.string.is_logining);
                 if(user!=null){
                     Log.d(TAG,"login success");
                     Intent mainIntent = new Intent(LoginActivity.this,MainActivity.class);
@@ -297,24 +300,5 @@ public class LoginActivity extends BaseActivity  { //implements LoaderCallbacks<
     }
 
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    private void showProgress(final boolean show) {
-        if(progressDialog == null){
-            progressDialog = new ProgressDialog(this);
-        }
-        if(show){
-            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progressDialog.setMessage(getString(R.string.is_logining));
-            progressDialog.setCancelable(true);
-            progressDialog.setCanceledOnTouchOutside(false);
-
-            progressDialog.show();
-        }else{
-            progressDialog.cancel();
-            progressDialog = null;
-        }
-    }
 }
 

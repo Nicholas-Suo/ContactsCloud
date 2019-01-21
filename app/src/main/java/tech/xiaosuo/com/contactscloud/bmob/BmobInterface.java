@@ -22,6 +22,8 @@ public  class BmobInterface {
     public static final int SMS_CODE_ERROR = 207;
     public static final int SMS_CODE_SEND_ERROR = 10010;
     public static final int SMS_CODE_SEND_FAIL_SERVER_NO_MSG_COUNT_ERROR = 10011;
+    public static final int NOT_FOUNT = 10007;
+
 
 /*    public static void setCallBackPresenter(CallBackPresenter callBackPresenter) {
         mCallBackPresenter = callBackPresenter;
@@ -71,10 +73,11 @@ public  class BmobInterface {
             Log.d(TAG,"reset password fail,params is null,return ");
             return ;
         }
-
+        context.showProgress(true,-1);
         BmobUser.resetPasswordBySMSCode(smsCode, newPassword, new UpdateListener() {
             @Override
             public void done(BmobException e) {
+                context.showProgress(false,-1);
                 if (e == null) {
                    // mTvInfo.append("重置成功");
                     Log.d(TAG,"reset password success ");

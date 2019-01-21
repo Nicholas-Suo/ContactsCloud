@@ -54,4 +54,9 @@
     <string name="sms_code">Sms Code</string>
     <string name="request_sms_code_agian">Request Again<xliff:g id="tiem_second"> %1$s</xliff:g>s</string>
     <string name="is_logining">Logining...</string>
+    <string name="verify">Verify</string>
+    <string name="wating">Wating...</string>
+    <string name="verify_code_invalid">Verify Code Invalid</string>
+    <string name="forget_password_title">Forget Password</string>
+    <string name="phonenumber_no_registered">The Phone number is not registered</string>
 </resources>

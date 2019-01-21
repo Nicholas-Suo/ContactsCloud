@@ -52,6 +52,12 @@
             android:name=".RegisterActivity"
             android:label="@string/register"
             ></activity>
+        <activity
+            android:name=".ForgetPasswordActivity"
+            android:label="@string/forget_password_title"
+            ></activity>
+
+
     </application>
 
 </manifest>

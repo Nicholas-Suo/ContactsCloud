@@ -53,4 +53,9 @@
     <string name="sms_code">验证码</string>
     <string name="request_sms_code_agian">重新获取<xliff:g id="tiem_second"> %1$s</xliff:g> 秒</string>
     <string name="is_logining">正在登录...</string>
+    <string name="verify">验证</string>
+    <string name="wating">正在处理，请稍等...</string>
+    <string name="verify_code_invalid">验证码格式错误</string>
+    <string name="forget_password_title">手机号验证</string>
+    <string name="phonenumber_no_registered">该用户未进行注册,请输入已注册的手机号码</string>
 </resources>

@@ -54,7 +54,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private EditText mTelNumber;
     private EditText mPasswordView;
     private EditText mRepeatPasswordView;
-    private ProgressDialog progressDialog;
     private Context mContext;
     private Button mRquestSmsCodeButton;
     private EditText mSmsCodeView;
@@ -161,7 +160,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             // form field with an error.
             focusView.requestFocus();
         } else {
-            showProgress(true);
+            showProgress(true,R.string.register_progress_message);
            // BmobSMS.verifySmsCodeObservable(telnumber,code);
             BmobSMS.verifySmsCode(telnumber, code, new UpdateListener() {
                 @Override
@@ -177,7 +176,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         user.signUp(new SaveListener<UserInfo>() {
                             @Override
                             public void done(UserInfo s, BmobException e) {
-                                showProgress(false);
+                                showProgress(false,R.string.register_progress_message);
                                 if (e==null) {
                                     Log.d(TAG," register success " + s.toString());
                                     new AlertDialog.Builder(RegisterActivity.this).setTitle(R.string.dialog_title).setMessage(R.string.register_sucess).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -228,7 +227,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                 }
                             });*/
                     } else {
-                        showProgress(false);
+                        showProgress(false,R.string.register_progress_message);
                         showErrorCode(e.getErrorCode());
                         //  Toast.makeText(context,context.getResources().getString(R.string.sms_code_verify_fail) + e.getErrorCode() + "-" + e.getMessage(),Toast.LENGTH_SHORT).show();
                         Log.d(TAG," the sms code verify fail "  + e.getErrorCode() + "-" + e.getMessage());
@@ -244,29 +243,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 5;
-    }
-
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        if(progressDialog == null){
-            progressDialog = new ProgressDialog(this);
-        }
-        if(show){
-            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progressDialog.setMessage(getString(R.string.register_progress_message));
-            progressDialog.setCancelable(true);
-            progressDialog.setCanceledOnTouchOutside(false);
-
-            progressDialog.show();
-        }else{
-            progressDialog.cancel();
-            progressDialog = null;
-        }
-
-
     }
 
     @Override
@@ -293,7 +269,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 boolean isValidPhoneNumber = Utils.isValidPhoneNumber(phoneNumber);
                 if(isValidPhoneNumber){
                     requestSmsCodeAgainTimer(Utils.ONE_MINUTE);
-                   // BmobInterface.sendSmsCodeRequest(this,phoneNumber);
+                    BmobInterface.sendSmsCodeRequest(this,phoneNumber);
                 }else{
                     Toast.makeText(mContext,R.string.error_invalid_phonenumber,Toast.LENGTH_SHORT).show();
                 }
