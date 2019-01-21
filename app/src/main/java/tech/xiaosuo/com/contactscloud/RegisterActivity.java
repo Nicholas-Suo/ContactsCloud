@@ -192,12 +192,12 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                                     Log.d(TAG," register fail " + e.toString());
                                     int errorCode = e.getErrorCode();
                                     switch (errorCode){
-                                        case ErrorCode.USERNAME_EXIST:
+                                        case BmobInterface.USER_NAME_EXIST:
                                             mNickName.setError(getString(R.string.nickname_exist));
                                             mNickName.requestFocus();
                                             break;
 
-                                        case ErrorCode.PHONE_NUMBER_EXIST:
+                                        case BmobInterface.PHONE_NUMBER_EXIST:
                                             mTelNumber.setError(getString(R.string.telnumber_exist));
                                             mTelNumber.requestFocus();
                                             break;
@@ -236,48 +236,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     }
                 }
             });
-
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
- /*           showProgress(true);
-            UserInfo user = new UserInfo();
-            user.setUsername(nickname);
-            user.setMobilePhoneNumber(telnumber);
-            user.setPassword(password);
-            user.signUp(new SaveListener<UserInfo>() {
-                @Override
-                public void done(UserInfo s, BmobException e) {
-                    showProgress(false);
-                    if (e==null) {
-                        Log.d(TAG," register success " + s.toString());
-                       new AlertDialog.Builder(mContext).setTitle(R.string.dialog_title).setMessage(R.string.register_sucess).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                finish();
-                            }
-                        }).show();
-                    }else{
-
-                        Log.d(TAG," register fail " + e.toString());
-                        int errorCode = e.getErrorCode();
-                        switch (errorCode){
-                            case ErrorCode.USERNAME_EXIST:
-                                mNickName.setError(getString(R.string.nickname_exist));
-                                mNickName.requestFocus();
-                                break;
-
-                            case ErrorCode.PHONE_NUMBER_EXIST:
-                                mTelNumber.setError(getString(R.string.telnumber_exist));
-                                mTelNumber.requestFocus();
-                                break;
-                            default:
-                                Toast.makeText(mContext,e.toString(), Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                }
-            });*/
-
         }
     }
 
@@ -335,7 +293,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 boolean isValidPhoneNumber = Utils.isValidPhoneNumber(phoneNumber);
                 if(isValidPhoneNumber){
                     requestSmsCodeAgainTimer(Utils.ONE_MINUTE);
-                    BmobInterface.sendSmsCodeRequest(this,phoneNumber);
+                   // BmobInterface.sendSmsCodeRequest(this,phoneNumber);
                 }else{
                     Toast.makeText(mContext,R.string.error_invalid_phonenumber,Toast.LENGTH_SHORT).show();
                 }
@@ -397,6 +355,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         mRquestSmsCodeButton.setText(timerStr);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        registerHandler.removeMessages(Utils.REFRESH_SEND_SMS_CODE_TIMER);
+    }
 }
 

@@ -18,6 +18,7 @@ public  class BmobInterface {
 
     private static final String TAG = "BmobInterface";
     public static final int USER_NAME_EXIST = 202;
+    public static final int PHONE_NUMBER_EXIST = 209;
     public static final int SMS_CODE_ERROR = 207;
     public static final int SMS_CODE_SEND_ERROR = 10010;
     public static final int SMS_CODE_SEND_FAIL_SERVER_NO_MSG_COUNT_ERROR = 10011;

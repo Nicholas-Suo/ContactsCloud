@@ -36,7 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * show the error code from the bmob web server.
      * @param err_code
      */
-    public static void showError(Activity activity, int err_code){
+    protected  void showError(Activity activity, int err_code){
         String messageStr = Integer.toString(err_code);
 
         if(activity == null){

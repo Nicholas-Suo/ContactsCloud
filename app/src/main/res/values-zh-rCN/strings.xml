@@ -52,4 +52,5 @@
     <string name="request_sms_code">获取验证码</string>
     <string name="sms_code">验证码</string>
     <string name="request_sms_code_agian">重新获取<xliff:g id="tiem_second"> %1$s</xliff:g> 秒</string>
+    <string name="is_logining">正在登录...</string>
 </resources>
