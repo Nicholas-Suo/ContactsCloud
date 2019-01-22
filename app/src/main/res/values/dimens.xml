@@ -8,7 +8,15 @@
     <dimen name="title_size">18dp</dimen>
     <dimen name="menu_item_left_margin">16dp</dimen>
     <dimen name="menu_item_right_margin">16dp</dimen>
+    <dimen name="menu_item_top_margin">6dp</dimen>
+    <dimen name="menu_item_bottom_margin">6dp</dimen>
     <dimen name="menu_list_top_margin">140dp</dimen>
     <dimen name="menu_item_right_margin_max">160dp</dimen>
+    <dimen name="menu_item_icon_height">30dp</dimen>
+    <dimen name="menu_item_icon_width">30dp</dimen>
     <dimen name="list_item_height">60dp</dimen>
+    <dimen name="click_login_textsize">12dp</dimen>
+    <dimen name="myinfo_username_textsize">18dp</dimen>
+    <dimen name="myinfo_margin_top">60dp</dimen>
+
 </resources>

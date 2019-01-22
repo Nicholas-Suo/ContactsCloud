@@ -50,6 +50,5 @@
        android:layout_below="@+id/sync_top_layout"
        android:layout_marginTop="@dimen/menu_list_top_margin"
        android:divider="@null"
-
        />
 </RelativeLayout>

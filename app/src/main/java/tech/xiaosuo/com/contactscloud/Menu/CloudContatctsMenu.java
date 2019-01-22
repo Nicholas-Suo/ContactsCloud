@@ -3,7 +3,7 @@ package tech.xiaosuo.com.contactscloud.Menu;
 import tech.xiaosuo.com.contactscloud.R;
 
 public class CloudContatctsMenu extends BaseMenu {
-    public static final String menuName = "cloud_contacts";
+    public static  final String menuName = "cloud_contacts";
     @Override
     public BaseMenu createMenu() {
         CloudContatctsMenu cloudContactMenu = new CloudContatctsMenu();

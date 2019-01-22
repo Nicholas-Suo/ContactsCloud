@@ -61,4 +61,9 @@
     <string name="phonenumber_no_registered">The Phone number is not registered</string>
     <string name="pls_input_new_password">please input new password</string>
     <string name="submit">Submit</string>
+    <string name="un_login">Un login</string>
+    <string name="click_login">click login</string>
+    <string name="replace_phone_number">Replace Phone Number</string>
+    <string name="modify_password">Modify Password</string>
+    <string name="settings">Settings</string>
 </resources>

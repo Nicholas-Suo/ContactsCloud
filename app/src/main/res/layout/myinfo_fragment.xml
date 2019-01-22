@@ -1,15 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cloud_bg"
+    >
+    <RelativeLayout
+        android:id ="@+id/myinfo_title_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/title_myinfo"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/sync_image_view_top_margin"
+        >
+        <TextView
+            android:id="@+id/myinfo_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_myinfo"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/title_size"
+            android:gravity="center_horizontal"
+            />
+   </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/myinfo_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/myinfo_title_layout"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/myinfo_margin_top"
+        >
+        <ImageView
+            android:id="@+id/user_head_icon_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/head_icon"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            >
+            <TextView
+                android:id="@+id/user_name_myinfo_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/un_login"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/myinfo_username_textsize"
+                />
+            <TextView
+                android:id="@+id/phone_number_myinfo_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/click_login"
+                android:textSize="@dimen/click_login_textsize"
+                />
+        </LinearLayout>
+    </LinearLayout>
+<!--    android:layout_marginTop="@dimen/menu_list_top_margin"-->
+    <ListView
+        android:id="@+id/myinfo_menu_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/myinfo_layout"
+        android:layout_marginTop="@dimen/menu_list_top_margin"
+        android:divider="@null"
         />
     <Button
         android:id="@+id/login_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register"
+        android:visibility="gone"
         />
 </RelativeLayout>

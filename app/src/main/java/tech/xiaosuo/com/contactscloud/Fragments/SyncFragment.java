@@ -16,11 +16,15 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tech.xiaosuo.com.contactscloud.CloudLocalMenuAdapter;
 import tech.xiaosuo.com.contactscloud.ErrorCode;
 import tech.xiaosuo.com.contactscloud.LoginActivity;
 import tech.xiaosuo.com.contactscloud.Menu.BaseMenu;
 import tech.xiaosuo.com.contactscloud.Menu.CloudContatctsMenu;
+import tech.xiaosuo.com.contactscloud.Menu.MenuFactory;
 import tech.xiaosuo.com.contactscloud.R;
 import tech.xiaosuo.com.contactscloud.bmob.UserInfo;
 
@@ -44,9 +48,11 @@ public class SyncFragment extends BaseFragment implements View.OnClickListener, 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         mListView = (ListView)syncFragmentView.findViewById(R.id.main_list_view);
         menuAdapter = new CloudLocalMenuAdapter(mContext);
         mListView.setAdapter(menuAdapter);
+        initMenuList();
         mListView.setOnItemClickListener(this);
         syncImageView = (ImageView)syncFragmentView.findViewById(R.id.sync_image_view);
         syncImageView.setOnClickListener(this);
@@ -59,7 +65,7 @@ public class SyncFragment extends BaseFragment implements View.OnClickListener, 
             case R.id.sync_image_view:
                 UserInfo bmobUser = UserInfo.getCurrentUser(UserInfo.class);
                 if(bmobUser == null){
-                    showNeedLoginDialog();
+                    showNeedLoginDialog(mContext);
                     return;
                 }
 
@@ -69,10 +75,10 @@ public class SyncFragment extends BaseFragment implements View.OnClickListener, 
         }
     }
 
-    /**
+/*    *//**
      * show the dialog: you need login first.
      *
-     */
+     *//*
     private void showNeedLoginDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(R.string.dialog_title).setMessage(R.string.pls_login).setPositiveButton(R.string.ok,new DialogInterface.OnClickListener(){
@@ -91,14 +97,14 @@ public class SyncFragment extends BaseFragment implements View.OnClickListener, 
         });
         builder.show();
 
-    }
+    }*/
 
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         UserInfo bmobUser = UserInfo.getCurrentUser(UserInfo.class);
         if(bmobUser == null){
-            showNeedLoginDialog();
+            showNeedLoginDialog(mContext);
             return;
         }
         BaseMenu menuItem = (BaseMenu)menuAdapter.getItem(position);
@@ -108,4 +114,18 @@ public class SyncFragment extends BaseFragment implements View.OnClickListener, 
 
         }
     }
+
+    /**
+     * init the menu list ,for show MENU:Cloud Contacts,Local Contacts
+     */
+    @Override
+    void initMenuList() {
+        List<BaseMenu> menuList = new ArrayList<BaseMenu>();
+        BaseMenu cloudContactMenu = MenuFactory.createMenu(CloudContatctsMenu.class);
+        menuList.add(cloudContactMenu);
+        if(menuAdapter != null){
+            menuAdapter.setMenuList(menuList);
+        }
+    }
+
 }

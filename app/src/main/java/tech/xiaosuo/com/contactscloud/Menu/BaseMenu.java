@@ -5,7 +5,7 @@ public abstract class BaseMenu {
     int cloudCount;
     int iconId;
     String menuName;
-
+    public static int hidden = -1;
     public int getNameId() {
         return nameId;
     }

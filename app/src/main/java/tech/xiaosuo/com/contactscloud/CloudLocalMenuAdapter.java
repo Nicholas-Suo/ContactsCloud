@@ -25,9 +25,13 @@ public class CloudLocalMenuAdapter extends BaseAdapter {
 
     public  CloudLocalMenuAdapter(Context context){
         this.context = context;
-        initMenuList();
+      //  initMenuList();
     }
 
+    public void setMenuList(List<BaseMenu> menuList) {
+        this.menuList = menuList;
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getCount() {
@@ -63,7 +67,14 @@ public class CloudLocalMenuAdapter extends BaseAdapter {
          if(menuBean != null){
              holder.menuImageView.setImageResource(menuBean.getIconId());
              holder.menuNameView.setText(menuBean.getNameId());
-             holder.menuCountView.setText(String.valueOf(menuBean.getCloudCount()));
+             int count = menuBean.getCloudCount();
+             if(count == BaseMenu.hidden){
+                 holder.menuCountView.setText("");
+                // holder.menuCountView.setVisibility(View.INVISIBLE);
+             }else{
+                 holder.menuCountView.setText(String.valueOf(count));
+             }
+
          }
 
         return convertView;
@@ -108,9 +119,9 @@ public class CloudLocalMenuAdapter extends BaseAdapter {
        }
    }*/
 
-    /**
+/*    *//**
      * init the menu list ,for show MENU:Cloud Contacts,Local Contacts
-     */
+     *//*
    private void initMenuList(){
        if(menuList == null){
            menuList = new ArrayList<BaseMenu>();
@@ -119,12 +130,12 @@ public class CloudLocalMenuAdapter extends BaseAdapter {
        }
        BaseMenu cloudContactMenu = MenuFactory.createMenu(CloudContatctsMenu.class);
 
-/*       MenuBean cloudContactMenu = new MenuBean();
+*//*       MenuBean cloudContactMenu = new MenuBean();
        cloudContactMenu.setIconId(R.drawable.cloud_icon);
        cloudContactMenu.setNameId(R.string.cloud_contacts);
-       cloudContactMenu.setCloudCount(0);*/
+       cloudContactMenu.setCloudCount(0);*//*
        menuList.add(cloudContactMenu);
 
-   }
+   }*/
 
 }
