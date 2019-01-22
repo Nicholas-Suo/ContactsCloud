@@ -62,7 +62,7 @@
     <string name="submit">提交</string>
     <string name="un_login">未登录</string>
     <string name="click_login">点击登录</string>
-    <string name="replace_phone_number">更换绑定手机号</string>
+    <string name="replace_phone_number">更换手机号</string>
     <string name="modify_password">修改密码</string>
     <string name="settings">设置</string>
 </resources>
