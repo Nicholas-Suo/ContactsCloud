@@ -64,6 +64,7 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
     // UI references.
     private EditText phoneNumberView;
     private EditText smsCodeVew;
+    private EditText passwordView;
     private Button requesSmsCodeView;
     private Context mContext;
 
@@ -77,6 +78,7 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         phoneNumberView = (EditText) findViewById(R.id.phone_number);
+        passwordView = (EditText)findViewById(R.id.new_password_fgt_pwd);
         smsCodeVew = (EditText) findViewById(R.id.forget_pwd_sms_code_view);
         requesSmsCodeView = (Button) findViewById(R.id.request_forget_pwd_sms_code_button);
         requesSmsCodeView.setOnClickListener(this);
@@ -100,10 +102,11 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
         // Reset errors.
         phoneNumberView.setError(null);
         smsCodeVew.setError(null);
-
+        passwordView.setError(null);
         // Store values at the time of the login attempt.
         String phoneNumber = phoneNumberView.getText().toString();
         String smsCode = smsCodeVew.getText().toString();
+        String newPwd = passwordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -114,6 +117,14 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
             focusView = smsCodeVew;
             cancel = true;
         }
+
+        //check password
+        if(TextUtils.isEmpty(newPwd) || newPwd.length() < 6){
+            passwordView.setError(getString(R.string.error_invalid_password));
+            focusView = passwordView;
+            cancel = true;
+        }
+
 
         // Check for a valid phone number
         if (TextUtils.isEmpty(phoneNumber)) {
@@ -132,7 +143,7 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
             focusView.requestFocus();
         } else {
             // perform the user login attempt.
-            BmobInterface.resetPassword(this,smsCode,"456789");
+            BmobInterface.resetPassword(this,smsCode,newPwd);
         }
     }
 
@@ -158,7 +169,7 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
              }
              smsCodeVew.requestFocus();
              requestSmsCodeAgainTimer(requesSmsCodeView,Utils.ONE_MINUTE);
-          //   BmobInterface.sendSmsCodeRequest(ForgetPasswordActivity.this,phoneNumber);
+             BmobInterface.sendSmsCodeRequest(ForgetPasswordActivity.this,phoneNumber);
             // isRegisteredPhone(phoneNumber);
          }
     }

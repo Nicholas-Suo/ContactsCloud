@@ -59,4 +59,6 @@
     <string name="verify_code_invalid">Verify Code Invalid</string>
     <string name="forget_password_title">Forget Password</string>
     <string name="phonenumber_no_registered">The Phone number is not registered</string>
+    <string name="pls_input_new_password">please input new password</string>
+    <string name="submit">Submit</string>
 </resources>

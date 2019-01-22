@@ -56,6 +56,8 @@
     <string name="verify">验证</string>
     <string name="wating">正在处理，请稍等...</string>
     <string name="verify_code_invalid">验证码格式错误</string>
-    <string name="forget_password_title">手机号验证</string>
+    <string name="forget_password_title">密码修改</string>
     <string name="phonenumber_no_registered">该用户未进行注册,请输入已注册的手机号码</string>
+    <string name="pls_input_new_password">请输入新密码</string>
+    <string name="submit">提交</string>
 </resources>
