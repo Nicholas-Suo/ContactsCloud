@@ -65,4 +65,5 @@
     <string name="replace_phone_number">更换手机号</string>
     <string name="modify_password">修改密码</string>
     <string name="settings">设置</string>
+    <string name="curr_phone_number">手机号：</string>
 </resources>

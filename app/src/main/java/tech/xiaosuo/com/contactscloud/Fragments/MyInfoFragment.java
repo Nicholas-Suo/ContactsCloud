@@ -25,6 +25,7 @@ import tech.xiaosuo.com.contactscloud.Menu.CloudContatctsMenu;
 import tech.xiaosuo.com.contactscloud.Menu.MenuFactory;
 import tech.xiaosuo.com.contactscloud.Menu.ModifyPasswordMenu;
 import tech.xiaosuo.com.contactscloud.Menu.SettingsMenu;
+import tech.xiaosuo.com.contactscloud.ModifyPasswordActivity;
 import tech.xiaosuo.com.contactscloud.R;
 import tech.xiaosuo.com.contactscloud.bmob.UserInfo;
 
@@ -116,6 +117,8 @@ public class MyInfoFragment extends BaseFragment  implements View.OnClickListene
             Log.d(TAG," open the bind phone number activity");
         }else if(ModifyPasswordMenu.menuName.equals(name)){
             Log.d(TAG," open the modify password activity");
+            Intent mdPwdintent = new Intent(context, ModifyPasswordActivity.class);
+            startActivity(mdPwdintent);
         }else if(SettingsMenu.menuName.equals(name)){
             Log.d(TAG," open the Settings activity");
         }

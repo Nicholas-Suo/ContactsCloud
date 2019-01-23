@@ -66,4 +66,5 @@
     <string name="replace_phone_number">Replace Phone Number</string>
     <string name="modify_password">Modify Password</string>
     <string name="settings">Settings</string>
+    <string name="curr_phone_number">Phone Number：</string>
 </resources>

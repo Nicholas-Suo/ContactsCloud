@@ -50,7 +50,8 @@ public  class BmobInterface {
             public void done(Integer smsId, BmobException e) {
                 if (e == null) {
                     Log.d(TAG,"send sms code request success " + smsId + "\n");
-                    Toast.makeText(context,context.getResources().getString(R.string.sms_code_has_send_to) + phone, Toast.LENGTH_SHORT).show();
+                    String phoneNumberWithStar = Utils.modifyPhoneMiddleNumberUsingStar(phone);
+                    Toast.makeText(context,context.getResources().getString(R.string.sms_code_has_send_to) + phoneNumberWithStar, Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d(TAG,"send sms code request fail " + e.getErrorCode() + "-" + e.getMessage());
                     context.showErrorCode(e.getErrorCode());
