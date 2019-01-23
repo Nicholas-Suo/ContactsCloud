@@ -100,20 +100,21 @@ public  class BmobInterface {
     }
 
     /**
-     * replace phone number for user.
-     * @param phone
-     * @param code
+     *  replace phone number for user.
+     * @param context
+     * @param code  sms code
+     * @param newPhone
      */
-    public static void replacePhoneNumber(final BaseActivity context , final String phone, String code){
+    public static void replacePhoneNumber(final BaseActivity context ,String code,final String newPhone){//
 
-         if(!Utils.isValidPhoneNumber(phone) || code == null){
+         if( !Utils.isValidPhoneNumber(newPhone) || code == null){//!Utils.isValidPhoneNumber(oldPhone) ||
              Log.d(TAG," the phone number or code is invalid ");
 /*             if(mCallBackPresenter != null){
                  mCallBackPresenter.replacePhoneNumberDialog(false);
              }*/
             return;
          }
-        BmobSMS.verifySmsCode(phone, code, new UpdateListener() {
+        BmobSMS.verifySmsCode(newPhone, code, new UpdateListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null) {
@@ -122,7 +123,7 @@ public  class BmobInterface {
                     UserInfo user = Utils.getCurrUserInfo();
                     user.setUsername(null);
 
-                    user.setMobilePhoneNumber(phone);
+                    user.setMobilePhoneNumber(newPhone);
                     //绑定
                     user.setMobilePhoneNumberVerified(true);
                     //解绑

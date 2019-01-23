@@ -66,4 +66,8 @@
     <string name="modify_password">修改密码</string>
     <string name="settings">设置</string>
     <string name="curr_phone_number">手机号：</string>
+    <string name="pls_input_password">请输入密码</string>
+    <string name="password_incrrect">密码不正确</string>
+    <string name="curr_login_phone_number">当前手机号：</string>
+    <string name="new_phone_number">新手机号</string>
 </resources>

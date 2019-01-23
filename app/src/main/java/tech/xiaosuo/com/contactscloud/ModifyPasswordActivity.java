@@ -24,9 +24,11 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.Editable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
@@ -85,9 +87,30 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
         phoneNumberView.setText(phoneNumberWithStar);;
 
         passwordView = (EditText)findViewById(R.id.new_password_md);
+        passwordView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                   if(s == null || s.length() < 6){
+                       requesSmsCodeView.setEnabled(false);
+                   }else{
+                       requesSmsCodeView.setEnabled(true);
+                   }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         smsCodeVew = (EditText) findViewById(R.id.md_pwd_sms_code_view);
         requesSmsCodeView = (Button) findViewById(R.id.request_md_pwd_sms_code_button);
         requesSmsCodeView.setOnClickListener(this);
+        requesSmsCodeView.setEnabled(false);
 
         Button mUserSignInButton = (Button) findViewById(R.id.md_pwd_verify_button);
         mUserSignInButton.setOnClickListener(new OnClickListener() {

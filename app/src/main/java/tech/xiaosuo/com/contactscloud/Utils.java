@@ -13,7 +13,7 @@ public class Utils {
     //after request sms code, we will wait 60s,to request it again
     public static final int REFRESH_SEND_SMS_CODE_TIMER = 1;
     public static final int ONE_MINUTE = 60;
-
+    public static final int PHONE_MUNBER_LEN = 11;
     public static boolean isNetworkConnected(Context context){
         ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();

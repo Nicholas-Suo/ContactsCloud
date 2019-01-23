@@ -60,7 +60,9 @@
             android:name=".ModifyPasswordActivity"
             android:label="@string/modify_password"
             ></activity>
-
+        <activity
+            android:name=".ReplacePhoneNumberActivity"
+            android:label="@string/replace_phonenumber" />
     </application>
 
 </manifest>
