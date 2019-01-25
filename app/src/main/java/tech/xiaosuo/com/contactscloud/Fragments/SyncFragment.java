@@ -1,12 +1,20 @@
 package tech.xiaosuo.com.contactscloud.Fragments;
 
+import android.Manifest;
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +45,10 @@ public class SyncFragment extends BaseFragment implements View.OnClickListener, 
     CloudLocalMenuAdapter menuAdapter = null;
     Context mContext = null;
     View syncFragmentView;
+    /**
+     * Id to identity READ_CONTACTS permission request.
+     */
+    private static final int REQUEST_READ_CONTACTS = 0;
 
     @Nullable
     @Override
@@ -68,7 +81,10 @@ public class SyncFragment extends BaseFragment implements View.OnClickListener, 
                     showNeedLoginDialog(mContext);
                     return;
                 }
-
+                boolean result = requestContactsPermission();
+                if(result){
+                    testLoadContacts();
+                }
                 break;
                 default:
                     break;
@@ -128,4 +144,133 @@ public class SyncFragment extends BaseFragment implements View.OnClickListener, 
         }
     }
 
+    private void testLoadContacts(){
+        ContentResolver resolver = getActivity().getContentResolver();
+        Cursor cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI,new String[]{ContactsContract.Contacts.NAME_RAW_CONTACT_ID},null,null,ContactsContract.Contacts.NAME_RAW_CONTACT_ID);
+       // Cursor cursor = resolver.query(ContactsContract.Data.CONTENT_URI,new String[]{ContactsContract.Data.RAW_CONTACT_ID},null,null,ContactsContract.Data.RAW_CONTACT_ID);
+        int contactNumber = cursor.getCount();
+        Log.d(TAG, " the contactNumber: " + contactNumber);
+        while(cursor.moveToNext()){
+           int rawIdIndex = cursor.getColumnIndex(ContactsContract.Contacts.NAME_RAW_CONTACT_ID);
+           int rawId  = cursor.getInt(rawIdIndex);
+           String selection = ContactsContract.Data.RAW_CONTACT_ID + " =?";
+           String[] selectionArgs = new String[]{Integer.toString(rawId)};
+           Cursor dataCursor = resolver.query(ContactsContract.Data.CONTENT_URI,null,selection,selectionArgs,ContactsContract.Data.RAW_CONTACT_ID);
+            Log.d(TAG, " rawId is : " + rawId);
+           while (dataCursor.moveToNext()){
+               int mimeTypeIndex = dataCursor.getColumnIndex(ContactsContract.Data.MIMETYPE);
+               String mimeType = dataCursor.getString(mimeTypeIndex);
+               Log.d(TAG, " mimeType is : " + mimeType);
+           }
+
+        }
+        cursor.close();
+    }
+
+     private boolean requestContactsPermission(){
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            Log.d(TAG, " the sdk version not request permission");
+               return  true;
+        }
+         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+             if (getActivity().checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+                 Log.d(TAG, " has get the read contact permission");
+                 return true;
+             }
+         }
+
+        if(shouldShowRequestPermissionRationale(Manifest.permission.READ_CONTACTS)){
+            Log.d(TAG, " should show request permission rational,snaker");
+            Snackbar.make(syncImageView,R.string.contact_permission_rationale,Snackbar.LENGTH_INDEFINITE).setAction(R.string.ok,new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    requestPermissions(new String[]{Manifest.permission.READ_CONTACTS},REQUEST_READ_CONTACTS);
+                }
+            }).show();
+        }else{
+            Log.d(TAG, " should request permission read contacts");
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS},REQUEST_READ_CONTACTS);
+        }
+
+        return false;
+     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == REQUEST_READ_CONTACTS){
+            if(grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                testLoadContacts();
+            }else{
+                Log.d(TAG, " can not get the read contact permission");
+                Toast.makeText(mContext,R.string.pls_open_read_contacts_permisson,Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+     /*    private boolean mayRequestContacts() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
+*//*            Snackbar.make(mPhoneNumberView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(android.R.string.ok, new View.OnClickListener() {
+                        @Override
+                        @TargetApi(Build.VERSION_CODES.M)
+                        public void onClick(View v) {
+                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+                        }
+                    });*//*
+        } else {
+            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
+        }
+        return false;
+    }*/
+    private void mimeType(){
+
+        //vnd.android.cursor.item/contact_event
+       // ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE
+
+        // vnd.android.cursor.item/email_v2
+       // ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE
+
+        //vnd.android.cursor.item/group_membership
+       // ContactsContract.CommonDataKinds.GroupMembership.CONTENT_ITEM_TYPE
+
+        //vnd.android.cursor.item/sip_address
+        // ContactsContract.CommonDataKinds.SipAddress.CONTENT_ITEM_TYPE
+
+        //vnd.android.cursor.item/im
+        // ContactsContract.CommonDataKinds.Im.CONTENT_ITEM_TYPE
+
+        // vnd.android.cursor.item/note
+        // ContactsContract.CommonDataKinds.Note.CONTENT_ITEM_TYPE
+
+        // vnd.android.cursor.item/name
+        // ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE
+
+        //vnd.android.cursor.item/organization
+        // ContactsContract.CommonDataKinds.Organization.CONTENT_ITEM_TYPE
+
+        //vnd.android.cursor.item/phone_v2
+        // ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE
+
+        //vnd.android.cursor.item/photo
+        // ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE
+
+       //vnd.android.cursor.item/website
+        // ContactsContract.CommonDataKinds.Website.CONTENT_ITEM_TYPE
+
+       // vnd.android.cursor.item/nickname
+        //  ContactsContract.CommonDataKinds.Nickname.CONTENT_ITEM_TYPE
+
+        //vnd.android.cursor.item/postal-address_v2
+        //  ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE
+
+    }
 }

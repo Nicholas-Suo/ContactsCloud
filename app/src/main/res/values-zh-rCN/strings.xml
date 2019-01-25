@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">通讯录云</string>
+    <string name="app_name">通讯录云助手</string>
     <string name="title_home">同步</string>
     <string name="title_myinfo">我的</string>
     <string name="title_notifications">Notifications</string>
@@ -70,4 +70,6 @@
     <string name="password_incrrect">密码不正确</string>
     <string name="curr_login_phone_number">当前手机号：</string>
     <string name="new_phone_number">新手机号</string>
+    <string name="contact_permission_rationale">"将要请求 读取联系人权限" </string>
+    <string name="pls_open_read_contacts_permisson">请在设置中打开读取联系人权限</string>
 </resources>

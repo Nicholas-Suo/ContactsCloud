@@ -2,6 +2,7 @@ package tech.xiaosuo.com.contactscloud;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -32,8 +33,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     MainFragmentAdapter mainFragmentAdapter = null;
     BottomNavigationView navigation;
     Context mContext = null;
-
-
+    ContactsContract.Contacts aa;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

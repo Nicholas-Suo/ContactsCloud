@@ -71,4 +71,6 @@
     <string name="password_incrrect">Password Incorrect</string>
     <string name="curr_login_phone_number">Current login phone number：</string>
     <string name="new_phone_number">new phone number</string>
+    <string name="contact_permission_rationale">"Contacts permissions are needed"</string>
+    <string name="pls_open_read_contacts_permisson">please open the read contact permission in Settings</string>
 </resources>
